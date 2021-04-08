@@ -1,0 +1,22 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    {% include 'snippets/get-bootstrap-css.html' %}
+
+    <title>CryptoCurrency</title>
+  </head>
+  <body>
+    
+    {% block content %}{% endblock %}
+
+    {% include 'snippets/get-bootstrap-js.html' %}
+    {% include 'snippets/get-ioicons.html' %}
+  </body>
+</html>

@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def currency_list(request):
+    return render(request, 'currency/list.html')

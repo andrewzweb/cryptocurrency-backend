@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     # my app
     'home',
+    'currency',
 ]
 
 MIDDLEWARE = [

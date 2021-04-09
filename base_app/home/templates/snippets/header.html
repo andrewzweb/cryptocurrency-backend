@@ -1,10 +1,16 @@
 <header class="header">
   <div>
-    <h3 class="logo"><a href="{% url 'home:home' %}"><ion-icon id="logo-page" class="logo" name="logo-bitcoin"></ion-icon>CryptoCurrency</a></h3>
+    <h3 class="logo"><a href="{% url 'home:home' %}">
+      <ion-icon id="logo-page" class="logo" name="logo-bitcoin"></ion-icon>
+      CryptoCurrency</a>
+    </h3>
     <nav class="nav">
-      <a class="nav-link {% if page == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home:home' %}">Home</a>
-      <a class="nav-link {% if page == 'currency' %}active{% endif %}" href="{% url 'currency:list' %}">Currencies</a>
-      <a class="nav-link" href="#">Dashboard</a>
+      <a class="nav-link {% if page == 'home' %}active{% endif %}"
+         href="{% url 'home:home' %}">Home</a>
+      <a class="nav-link {% if page == 'currency' %}active{% endif %}"
+         href="{% url 'currency:list' %}">Currencies</a>
+      <a class="nav-link  {% if page == 'dashboard' %}active{% endif %}"
+         href="{% url 'account:dashboard' %}">Dashboard</a>
       <div>
         <a class="button btn btn-warning" href="{% url 'account:login' %}">Sing In</a>
       </div>

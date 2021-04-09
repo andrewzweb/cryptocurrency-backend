@@ -24,3 +24,8 @@ def logout_account(request):
     ''' logout account '''
     logout(request)
     return redirect(reverse('home:home'))
+
+def dashboard(request):
+    ''' dashboard account '''
+    page = 'dashboard'
+    return render(request, 'account/dashboard.html', locals() )

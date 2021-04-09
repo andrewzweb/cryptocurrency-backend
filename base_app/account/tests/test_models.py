@@ -2,6 +2,7 @@
 
 import pytest
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from mixer.backend.django import mixer
 pytestmark = pytest.mark.django_db
 from ..models import Account
@@ -17,7 +18,7 @@ class TestAccount:
             'my@email.com',
             'secret_pass')
 
-    def test_create_account(sefl):
+    def test_create_account(self):
         ''' test create account '''
 
         account = Account.objects.create(
@@ -26,4 +27,12 @@ class TestAccount:
         )
 
         assert Account.objects.count() == 1
-        assert account.name ==  Account.objects.first().name
+
+    def test_can_not_create_user_without_django_user(self):
+        ''' can not create user without django user '''
+
+        with pytest.raises(ObjectDoesNotExist):
+            account = Account.objects.create(
+                name='Test'
+            )
+        assert Account.objects.count() == 0

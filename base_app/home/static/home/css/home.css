@@ -153,4 +153,11 @@ table.table-3 td {
         border-bottom: 0;
     }
 }
+
+ion-icon[name="add-outline"] {
+    background-color: orange;
+    color: #212529;
+    border-radius: 50%;
+}
+
 // == end currency ===

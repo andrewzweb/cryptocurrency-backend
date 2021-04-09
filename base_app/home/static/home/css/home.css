@@ -64,3 +64,28 @@ header div {
 }
 
 // === end header ====
+
+// === login === 
+
+form{
+    width: 100%;
+}
+
+.form-input {
+    background-color: grey;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 0.66rem;
+    border-radius: 10px;
+}
+
+label {
+    padding: 0.5rem;
+}
+
+.button-login {
+    margin-top: 1.5rem;
+}
+
+// === end login === 

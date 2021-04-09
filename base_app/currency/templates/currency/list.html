@@ -1,12 +1,35 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<h3>Currency list</h3>
 
-<p>Bitcoin 100.12</p>
-<p>AltCoin 840.32</p>
-<p>DoggyCoin 30.32</p>
-<p>LamaCoin 1200.34</p>
+<section class="container">
+  <h1 class="text-center">All Currencies</h1>
+
+  <div class="currency--list row">
+    <table class="table">
+      <thead key="thead">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Marlet Cap</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for currency in currencies %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ currency.name }}</td>
+          <td>{{ currency.symbol }}</td>
+          <td>{{ currency.market_cap }}</td>
+          <td>{{ currency.price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
 
 {% endblock %}
 

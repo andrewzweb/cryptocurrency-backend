@@ -1,0 +1,66 @@
+body {
+    height: 100vh;
+    background: #212529;
+    color: white;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+#content {
+    width: 100%;
+}
+
+
+// === header ====
+
+.header{
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: center;
+}
+
+header div {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.logo {
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center;
+}
+
+#logo-page {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: orange;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 5px 5px 40px orange;
+}
+
+.nav {
+    margin: 0.5rem;
+}
+
+.nav a  {
+    color: grey;
+    display: flex;
+    flex-flow: nowrap row;
+    align-items: center;
+}
+
+.nav .active {
+    color: orange;
+}
+
+// === end header ====

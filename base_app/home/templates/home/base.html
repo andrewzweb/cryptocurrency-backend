@@ -9,14 +9,22 @@
 
     <!-- Bootstrap CSS -->
     {% include 'snippets/get-bootstrap-css.html' %}
-
+    {% include 'snippets/get-ioicons.html' %}
+    <link href="{% static 'home/css/home.css' %}" rel="stylesheet"/>
     <title>CryptoCurrency</title>
   </head>
   <body>
-    
-    {% block content %}{% endblock %}
+    <!-- header -->
+    {% include 'snippets/header.html' %}
 
+    <section id="content">
+      <!-- main content block -->
+      {% block content %}{% endblock %}
+    </section>
+
+    <!-- footer -->
+    {% include 'snippets/footer.html' %}
+    
     {% include 'snippets/get-bootstrap-js.html' %}
-    {% include 'snippets/get-ioicons.html' %}
   </body>
 </html>

@@ -33,10 +33,15 @@ header div {
     align-content: center;
 }
 
-.logo {
+.logo a {
     display: flex;
     flex-flow: nowrap row;
     align-items: center;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
 }
 
 #logo-page {
@@ -46,6 +51,9 @@ header div {
     padding: 1rem;
     margin: 0.5rem;
     border-radius: 50%;
+}
+
+.logo:hover #logo-page {
     box-shadow: 5px 5px 40px orange;
 }
 

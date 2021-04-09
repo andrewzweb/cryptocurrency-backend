@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'home/entrypoint.html')
+    page = 'home'
+    return render(request, 'home/entrypoint.html', locals())
 
 def landing(request):
     return render(request, 'home/landing.html')

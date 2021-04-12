@@ -2,7 +2,35 @@
 
 {% block content %}
 <section class="container dashboard">
-  <h1 class="text-center">Dashboard</h1>
+  <h1 class="text-center">Dashboard: {{ request.user }}</h1>
 </section>
+
+<section class="container currency">
+  <table class="table-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Market Cap</th>
+        <th>Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for currency in dashboard.currency.all %}
+      <tr>
+        <td data-label="numb">{{ forloop.counter }}</td>
+        <td data-label="name">{{ currency.name }}</td>
+        <td data-label="symbol">{{ currency.symbol }}</td>
+        <td data-label="market_cap">{{ currency.market_cap }}</td>
+        <td data-label="price">{{ currency.price }}</td>
+        <td data-label="Delete"><ion-icon name="remove-outline"></ion-icon></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
 {% endblock %}
 

@@ -168,4 +168,10 @@ ion-icon[name="add-outline"] {
     border-radius: 50%;
 }
 
+ion-icon[name="remove-outline"] {
+    background-color: orange;
+    color: #212529;
+    border-radius: 50%;
+}
+
 // == end currency ===

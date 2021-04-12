@@ -3,7 +3,8 @@ from django.contrib.auth import logout
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-
+from currency.models import Dashboard
+from .models import Account
 
 def login_account(request):
     ''' login account '''
@@ -28,4 +29,7 @@ def logout_account(request):
 def dashboard(request):
     ''' dashboard account '''
     page = 'dashboard'
-    return render(request, 'account/dashboard.html', locals() )
+    if request.user != None:
+        account = Account.objects.get(user=request.user)
+        dashboard = Dashboard.objects.get(account=account)
+    return render(request, 'account/dashboard.html', locals())

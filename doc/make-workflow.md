@@ -21,3 +21,9 @@ And also need check functional test
 python manage.py test functional_tests.start
 ``
 
+
+## For correct work socket need run redis in docker 
+
+```
+docker run -p 6379:6379 -d redis:5
+```

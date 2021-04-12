@@ -32,13 +32,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd app
+    'channels',
     'rest_framework',
     'corsheaders',
-    
+
     # my app
     'home',
     'currency',
     'account',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        # for correct test websocket app dashboard
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
+        }
     }
 }
 
@@ -116,3 +122,14 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
+# Channels
+ASGI_APPLICATION = "base_app.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

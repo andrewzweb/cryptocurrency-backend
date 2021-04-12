@@ -13,3 +13,7 @@ class Account(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.user.username
         super(Account, self).save(*args, **kwargs)
+
+
+    def __str__(self):
+        return self.name

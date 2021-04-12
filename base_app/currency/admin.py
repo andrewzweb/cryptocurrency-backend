@@ -1,10 +1,10 @@
 ''' admin product '''
 
 from django.contrib import admin
-from . import models
+from .models import Currency, Dashboard
 
 
-@admin.register(models.Currency)
+@admin.register(Currency)
 class CurrencyAdmin(admin.ModelAdmin):
     ''' product admin '''
     list_display = (
@@ -19,3 +19,17 @@ class CurrencyAdmin(admin.ModelAdmin):
     )
     search_fields = ('name', 'symbol')
     list_filter = ('updated', 'created')
+
+
+class CurrencyInline(admin.TabularInline):
+    model = Currency
+
+
+@admin.register(Dashboard)
+class DashboardAdmin(admin.ModelAdmin):
+    ''' dashboard admin '''
+    filter_horizontal = ('currency',)
+
+#    inlines = [
+#        CurrencyInline,
+#    ]

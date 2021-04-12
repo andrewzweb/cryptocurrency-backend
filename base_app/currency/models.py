@@ -1,5 +1,5 @@
 from django.db import models
-
+from account.models import Account
 
 class Currency(models.Model):
     ''' currency '''
@@ -20,3 +20,11 @@ class Currency(models.Model):
 
     def __str__(self):
         return 'Currency: {}'.format(self.name)
+
+
+class Dashboard(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.PROTECT)
+    currency = models.ManyToManyField(Currency)
+
+    def __str__(self):
+        return "Dashboard: {}".format(self.account.name)

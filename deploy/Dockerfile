@@ -18,9 +18,6 @@ RUN pip install --no-cache-dir -r pip.txt
 # Migration db
 RUN python base_app/manage.py migrate
 
-# Migration db
-RUN python base_app/manage.py collectstatic
-
 # Expose ports
 EXPOSE 8000
 

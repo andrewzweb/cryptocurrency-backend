@@ -29,11 +29,13 @@ class Currency(models.Model):
     def save(self, *args, **kwargs):
         super(Currency, self).save(*args, **kwargs)
         # send update to socket
-        async_to_sync(channels_layer.group_send)('chat_dashboard', {
-            'type': 'update_currency',
-            'message': 'text'
-        })
-
+        try: 
+            async_to_sync(channels_layer.group_send)('chat_dashboard', {
+                'type': 'update_currency',
+                'message': 'text'
+            })
+        except:
+            pass
 
 class Dashboard(models.Model):
     '''dashboard '''

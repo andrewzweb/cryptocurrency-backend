@@ -1,5 +1,10 @@
 from django.db import models
 from account.models import Account
+from asgiref.sync import async_to_sync # for WebSocket
+from channels.layers import get_channel_layer # for WebSocket
+
+channels_layer = get_channel_layer()
+
 
 class Currency(models.Model):
     ''' currency '''
@@ -21,8 +26,17 @@ class Currency(models.Model):
     def __str__(self):
         return 'Currency: {}'.format(self.name)
 
+    def save(self, *args, **kwargs):
+        super(Currency, self).save(*args, **kwargs)
+        # send update to socket
+        async_to_sync(channels_layer.group_send)('chat_dashboard', {
+            'type': 'update_currency',
+            'message': 'text'
+        })
+
 
 class Dashboard(models.Model):
+    '''dashboard '''
     account = models.ForeignKey(Account, on_delete=models.PROTECT)
     currency = models.ManyToManyField(Currency)
 

@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
 from django.urls import reverse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from currency.models import Dashboard
 from .models import Account
 
@@ -29,7 +28,12 @@ def logout_account(request):
 def dashboard(request):
     ''' dashboard account '''
     page = 'dashboard'
-    if request.user != None:
-        account = Account.objects.get(user=request.user)
-        dashboard = Dashboard.objects.get(account=account)
+    if request.user.is_anonymous:
+        pass
+    else:
+        try:
+            account = Account.objects.get(user=request.user)
+            dashboard = Dashboard.objects.get(account=account)
+        except:
+            redirect(reverse('account:login'))
     return render(request, 'account/dashboard.html', locals())

@@ -38,3 +38,43 @@ class TestViewAccount:
             }
         )
         assert response.status_code == 302
+
+
+@pytest.mark.django_db
+class TestAuthToken:
+    ''' teset auth token '''
+
+    def setup(self):
+        ''' setup '''
+        self.client = Client()
+    
+    def test_get_auth_token(self):
+        ''' test get auth token '''
+        
+        self.user = User.objects.create_user(
+            'UserName',
+            'user@email.com',
+            'UserPassword'
+        )
+    
+        response = self.client.post(
+            reverse('account:token'),
+            {
+                'username': 'UserName',
+                'password': 'UserPassword'
+            })
+
+        assert response.status_code == 200
+        
+    def test_get_auth_token_for_not_exist_user(self):
+        ''' test get auth token for not exist user '''
+    
+        response = self.client.post(
+            reverse('account:token'),
+            {
+                'username': 'notExistUser',
+                'password': 'somePassword'
+            }
+        )
+
+        assert response.status_code == 400

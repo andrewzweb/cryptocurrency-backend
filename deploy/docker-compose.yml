@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  redis:
+    image: redis:5
+    ports: 
+      - "6379:6379"
+
+  django:
+    image: currency-backend:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      
+  frontend:
+    image: currency-frontend:latest
+    command: ["npm", "start"]
+    ports:
+      - "3000:3000"
+

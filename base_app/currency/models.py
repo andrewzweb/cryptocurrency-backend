@@ -2,9 +2,10 @@ from django.db import models
 from account.models import Account
 from asgiref.sync import async_to_sync # for WebSocket
 from channels.layers import get_channel_layer # for WebSocket
+import logging
 
+logger = logging.getLogger(__name__)
 channels_layer = get_channel_layer()
-
 
 class Currency(models.Model):
     ''' currency '''
@@ -29,13 +30,16 @@ class Currency(models.Model):
     def save(self, *args, **kwargs):
         super(Currency, self).save(*args, **kwargs)
         # send update to socket
-        try: 
+        try:
+            logger.debug('[ ] Try send to ws message ...')
             async_to_sync(channels_layer.group_send)('chat_dashboard', {
-                'type': 'update_currency',
+                'type': 'update_dashboard',
                 'message': 'text'
             })
+            logger.debug('[+] Send to ws message ...')
         except:
-            pass
+            logger.debug('[-] Error send to ws message ...')
+
 
 class Dashboard(models.Model):
     '''dashboard '''

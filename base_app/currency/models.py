@@ -1,5 +1,4 @@
 from django.db import models
-from account.models import Account
 from asgiref.sync import async_to_sync # for WebSocket
 from channels.layers import get_channel_layer # for WebSocket
 import logging
@@ -39,12 +38,3 @@ class Currency(models.Model):
             logger.debug('[+] Send to ws message ...')
         except:
             logger.debug('[-] Error send to ws message ...')
-
-
-class Dashboard(models.Model):
-    '''dashboard '''
-    account = models.ForeignKey(Account, on_delete=models.PROTECT)
-    currency = models.ManyToManyField(Currency)
-
-    def __str__(self):
-        return "Dashboard: {}".format(self.account.name)

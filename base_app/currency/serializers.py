@@ -6,4 +6,4 @@ class CurrencySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Currency
-        fields = ('pk','name', 'symbol', 'market_cap', 'price')
+        fields = ('pk', 'name', 'symbol', 'market_cap', 'price')

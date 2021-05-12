@@ -65,6 +65,7 @@ class TestAuthToken:
             })
 
         assert response.status_code == 200
+        assert response.data['token']
         
     def test_get_auth_token_for_not_exist_user(self):
         ''' test get auth token for not exist user '''
@@ -76,5 +77,6 @@ class TestAuthToken:
                 'password': 'somePassword'
             }
         )
-
+        
         assert response.status_code == 400
+

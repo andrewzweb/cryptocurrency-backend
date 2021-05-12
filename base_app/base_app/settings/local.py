@@ -1,7 +1,7 @@
 ''' local settings '''
 
 from .base import *
-from .logging import *
+#from .logging import *
 
 SECRET_KEY = 'django-insecure--hfhg76!do@za-ln3&pg9*(2x2sb^-k=he6)p2vrd&$ram$izo'
 DEBUG = True
@@ -49,13 +49,15 @@ CHANNEL_LAYERS = {
 # REST
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+        #'rest_framework.permissions.IsAuthenticated',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#        'rest_framework.authentication.SessionAuthentication',
+#        'rest_framework.authentication.BasicAuthentication',
+#    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
 JWT_AUTH = {

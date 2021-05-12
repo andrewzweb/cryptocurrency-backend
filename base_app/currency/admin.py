@@ -1,7 +1,7 @@
 ''' admin product '''
 
 from django.contrib import admin
-from .models import Currency, Dashboard
+from .models import Currency
 
 
 @admin.register(Currency)
@@ -23,13 +23,3 @@ class CurrencyAdmin(admin.ModelAdmin):
 
 class CurrencyInline(admin.TabularInline):
     model = Currency
-
-
-@admin.register(Dashboard)
-class DashboardAdmin(admin.ModelAdmin):
-    ''' dashboard admin '''
-    filter_horizontal = ('currency',)
-
-#    inlines = [
-#        CurrencyInline,
-#    ]

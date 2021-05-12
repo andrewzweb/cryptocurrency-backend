@@ -1,7 +1,7 @@
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from currency.models import Dashboard
+from dashboard.models import Dashboard
 
 
 class DashboardConsumer(WebsocketConsumer):

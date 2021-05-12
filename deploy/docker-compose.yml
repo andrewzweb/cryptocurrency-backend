@@ -9,14 +9,17 @@ services:
 
   django:
     image: currency-backend:latest
+    restart: 'on-failure'
     ports:
       - "8000:8000"
     depends_on:
       - redis
-      
+    links:
+      - redis
+
   frontend:
     image: currency-frontend:latest
+    restart: 'on-failure'
     command: ["npm", "start"]
     ports:
       - "3000:3000"
-

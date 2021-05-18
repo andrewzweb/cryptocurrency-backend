@@ -2,6 +2,8 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from dashboard.models import Dashboard
+from account.models import Account
+from django.contrib.auth.models import User
 
 
 class DashboardConsumer(WebsocketConsumer):
@@ -12,7 +14,7 @@ class DashboardConsumer(WebsocketConsumer):
 
     def update_dashboard(self, data):
         content = {
-            'dashboard': self._get_data_from_dashboard()
+            'dashboard': self._get_data_from_dashboard(data)
         }
         self.send_dashboard(content)
         print('update')
@@ -58,8 +60,12 @@ class DashboardConsumer(WebsocketConsumer):
             'dashboard':data
         }))
 
-    def _get_data_from_dashboard(self, user=None):
-        dashboard = Dashboard.objects.first().currency.all()
+    def _get_data_from_dashboard(self, data,  user=None):
+
+        username = data['username']
+        user = User.objects.get(username=username)
+        account = Account.objects.get(user=user)
+        dashboard = Dashboard.objects.get(account=account).currency.all()
         result = []
         for item in dashboard:
             result.append(

@@ -29,6 +29,7 @@ urlpatterns = [
 
     # api dashboard
     path('api/dashboard/', dashboard_api.dashboard_list, name='api_dashboard_list'),
+    path('api/dashboard/<int:pk>', dashboard_api.dashboard_detail, name='api_dashboard_detail'),
     
     # api user
     path('api/current_user/', current_user),

@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 
 
 
-#@permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticatedOrReadOnly])
 @api_view(['GET', 'POST'])
 def dashboard_list(request):
     """
@@ -34,3 +34,36 @@ def dashboard_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def dashboard_detail(request, pk):
+    """
+    Retrieve, update or delete currency for dashboard by id/pk.
+    """
+    try:
+        dashboard = Dashboard.objects.get(pk=pk)
+    except Dashboard.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = DashboardSerializer(dashboard,context={'request': request})
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        print('INPUT DATA:', request.data)
+        serializer = DashboardSerializer(
+            dashboard,
+            data=request.data,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            print('OUTPUT: ', serializer.data)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        dashboard.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

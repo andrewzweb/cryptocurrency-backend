@@ -6,6 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 channels_layer = get_channel_layer()
 
+
 class Currency(models.Model):
     ''' currency '''
     name = models.CharField(max_length=30)
@@ -23,8 +24,8 @@ class Currency(models.Model):
     class Meta:
         ordering = ["-price"]
 
-    def __str__(self):
-        return 'Currency: {}'.format(self.name)
+    #def __str__(self):
+    #    return 'Currency: {}'.format(self.name)
 
     def save(self, *args, **kwargs):
         super(Currency, self).save(*args, **kwargs)

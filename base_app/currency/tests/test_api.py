@@ -18,6 +18,7 @@ class TestApiCurrency(APITestCase):
     '''test case api currency'''
     
     def setup(self):
+        '''setup'''
         self.client = RequestsClient()
 
     def test_get_currency(self):
@@ -68,7 +69,6 @@ class TestApiCurrency(APITestCase):
         # send data
         url = reverse('api_currency_list')
         data = {
-            'id': 10,
             'name': 'ArcCoin',
             'symbol': 'ARC',
             'price': 10,
@@ -86,7 +86,6 @@ class TestApiCurrency(APITestCase):
         # send data
         url = reverse('api_currency_list')
         data = {
-            'id': 10,
             'name': 'ArcCoin',
             'symbol': 'ARC',
             'price': 10,
@@ -97,3 +96,4 @@ class TestApiCurrency(APITestCase):
         # check
         assert request.status_code == 403
         assert Currency.objects.count() == 0
+        

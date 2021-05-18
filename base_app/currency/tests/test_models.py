@@ -21,11 +21,6 @@ class TestCurrency:
         mixer.cycle(5).blend('currency.Currency')
         assert Currency.objects.count() == 5
 
-    def test_string_obj_currency(self):
-        ''' test string obj currency '''
-        currency = mixer.blend('currency.Currency')
-        assert currency.name in str(Currency.objects.first())
-
     def test_default_market_cap_is_zero(self):
         ''' test default market cap is zero '''
         currency = mixer.blend('currency.Currency')

@@ -9,10 +9,11 @@ class DashboardSerializer(serializers.ModelSerializer):
 
     currency = CurrencySerializer(many=True, read_only=True)
     account = AccountSerializer(read_only=True)
-
+    
     class Meta:
         model = Dashboard
-        fields = (
+        fields = [
+            'pk',
             'account',
-            'currency'
-        )
+            'currency',
+        ]

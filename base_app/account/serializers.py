@@ -40,4 +40,4 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('name',)
+        fields = ('pk', 'name',)

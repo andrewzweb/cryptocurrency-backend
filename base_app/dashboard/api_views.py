@@ -52,7 +52,6 @@ def dashboard_detail(request, pk):
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        print('INPUT DATA:', request.data)
         serializer = DashboardSerializer(
             dashboard,
             data=request.data,
@@ -60,7 +59,6 @@ def dashboard_detail(request, pk):
         )
         if serializer.is_valid():
             serializer.save()
-            print('OUTPUT: ', serializer.data)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

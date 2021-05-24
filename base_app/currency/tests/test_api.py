@@ -94,6 +94,6 @@ class TestApiCurrency(APITestCase):
         request = self.client.post(url, json.dumps(data), content_type='application/json')
 
         # check
-        assert request.status_code == 403
+        assert request.status_code == 401 # fail to unauthorization user
         assert Currency.objects.count() == 0
         

@@ -6,9 +6,8 @@ from account.serializers import AccountSerializer
 from currency.models import Currency
 
 class DashboardSerializer(serializers.ModelSerializer):
-
-    #currency = serializers.PrimaryKeyRelatedField(many=True, queryset=Currency.objects.all())
-    #currency = serializers.StringRelatedField(many=True, queryset=Currency.objects.all())
+    ''' dashboard serializers '''
+    
     currency = CurrencySerializer(many=True)
     account = AccountSerializer(read_only=True)
     

@@ -50,15 +50,16 @@ CHANNEL_LAYERS = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
-        #'rest_framework.permissions.IsAuthenticated',
     ),
-#    'DEFAULT_AUTHENTICATION_CLASSES': (
-#        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#        'rest_framework.authentication.SessionAuthentication',
-#        'rest_framework.authentication.BasicAuthentication',
-#    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
+
+#AUTH_USER_MODEL = 'account.User'
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'account.utils.my_jwt_response_handler'

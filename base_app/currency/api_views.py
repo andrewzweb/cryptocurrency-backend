@@ -21,7 +21,7 @@ def currency_list(request):
         previousPage = 1
         currencies = Currency.objects.all()
         page = request.GET.get('page', 1)
-        paginator = Paginator(currencies, 10)
+        paginator = Paginator(currencies, 20)
         try:
             data = paginator.page(page)
         except PageNotAnInteger:

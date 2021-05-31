@@ -48,13 +48,14 @@ CHANNEL_LAYERS = {
 
 # REST
 REST_FRAMEWORK = {
+    'AUTH_HEADER_TYPES': ('JWT',),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }

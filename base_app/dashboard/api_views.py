@@ -37,12 +37,12 @@ def dashboard_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def dashboard_detail(request, username):
+def dashboard_detail(request, pk):
     """
     Retrieve, update or delete currency for dashboard by id/pk.
     """
     try:
-        dashboard = Dashboard.objects.get(account__user__username=username)
+        dashboard = Dashboard.objects.get(pk=pk)
     except Dashboard.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

@@ -13,6 +13,9 @@ from dashboard.serializers import DashboardSerializer
 from currency.models import Currency
 from account.models import Account
 
+@pytest.fixture
+def add_some_coin(self):
+    print('add_some_coin')
 
 class TestApiDashboard(APITestCase):
     '''testcase api dashboard'''
@@ -82,6 +85,7 @@ class TestApiDashboard(APITestCase):
         
         assert response.status_code == status.HTTP_201_CREATED
         assert Dashboard.objects.count() == 1
+
         
     def test_add_currency_to_dashboard(self):
         ''' test add currency to dashboard '''
@@ -115,8 +119,9 @@ class TestApiDashboard(APITestCase):
             ]
         }
 
-        url = reverse('api_dashboard_detail', kwargs={'pk': dashboard.id})
+        url = reverse('api_dashboard_detail', kwargs={'pk': dashboard.pk})
         response = self.client.put(url, data, format='json')
 
         dashboard_from_db = Dashboard.objects.get(pk=dashboard.pk)
         assert dashboard_from_db.currency.all()[0] == currency
+        assert len(dashboard_from_db.currency.all()) == 1

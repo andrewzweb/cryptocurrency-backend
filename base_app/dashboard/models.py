@@ -1,7 +1,7 @@
 from django.db import models
-
 from currency.models import Currency
 from account.models import Account
+
 
 class Dashboard(models.Model):
     '''dashboard '''

@@ -7,9 +7,11 @@ services:
     ports: 
       - "6379:6379"
 
-  django:
-    image: currency-backend:latest
-    restart: 'on-failure'
+  backend-drf:
+    restart: unless-stopped
+    build:
+      context: ../../cryptocurrency-backend/
+      dockerfile: deploy/Dockerfile-for-compose
     ports:
       - "8000:8000"
     depends_on:
@@ -17,8 +19,20 @@ services:
     links:
       - redis
 
-  frontend:
-    image: currency-frontend:latest
+  backend-chanel:
+    restart: unless-stopped
+    build:
+      context: ../../cryptocurrency-backend/
+      dockerfile: deploy/Dockerfile-async
+    ports:
+      - "8001:8001"
+    depends_on:
+      - redis
+    links:
+      - redis
+
+  frontend-react:
+    build: ../../cryptocurrency-frontend/
     restart: 'on-failure'
     command: ["npm", "start"]
     ports:

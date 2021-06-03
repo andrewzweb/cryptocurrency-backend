@@ -6,6 +6,6 @@ ADD ./  /usr/src/app
 WORKDIR /usr/src/app
 COPY deploy/pip.txt ./
 RUN pip install --no-cache-dir -r pip.txt
-#RUN python base_app/manage.py migrate
-EXPOSE 8000
-CMD exec gunicorn -w 3 -b 0.0.0.0:8000 --chdir base_app/ base_app.wsgi:application --reload
+EXPOSE 8001
+WORKDIR /usr/src/app/base_app
+CMD exec daphne base_app.asgi:application --bind 0.0.0.0 --port 8001

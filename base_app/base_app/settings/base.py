@@ -1,11 +1,12 @@
 """
 Settings Django 3.2.
 """
-
 import os
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+SECRET_KEY = config("SECRET_KEY")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,3 +83,46 @@ USE_L10N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Channels
+ASGI_APPLICATION = "base_app.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            # TODO: change ip to docker like
+            "hosts": [('redis', 6379)],
+            #"hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+# REST
+REST_FRAMEWORK = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
+
+#AUTH_USER_MODEL = 'account.User'
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'account.utils.my_jwt_response_handler'
+}
+
+
+# static
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'home/static'),
+]
+

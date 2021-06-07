@@ -87,16 +87,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Channels
 ASGI_APPLICATION = "base_app.asgi.application"
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            # TODO: change ip to docker like
-            "hosts": [('redis', 6379)],
-            #"hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
 
 # REST
 REST_FRAMEWORK = {
@@ -125,4 +115,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'home/static'),
 ]
-

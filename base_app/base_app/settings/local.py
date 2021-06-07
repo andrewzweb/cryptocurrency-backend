@@ -19,3 +19,12 @@ DATABASES = {
 
 # cors for djangorest
 CORS_ORIGIN_ALLOW_ALL = True # allow any requests
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

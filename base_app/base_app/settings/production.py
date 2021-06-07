@@ -26,3 +26,12 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     DOMAIN_URL
 )
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
+        },
+    },
+}

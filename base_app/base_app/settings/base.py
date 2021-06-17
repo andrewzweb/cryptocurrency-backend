@@ -7,6 +7,7 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = config("SECRET_KEY")
+API_KEY_FOR_COINMARKET = config("API_KEY_FOR_COINMARKET")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -115,3 +116,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'home/static'),
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
